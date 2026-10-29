@@ -698,3 +698,126 @@ html.no-intro .ln__in::after{animation-delay:3s}
   .gb__row{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:10px}
 }
 @media (prefers-reduced-motion:reduce){.gb__rec{animation:none}.gb__note.is-new{animation:none}.gb__note,.gb__send{transition:none}}
+
+/* ===================== v11: laptop layout + smooth scrolling + thumbnail dim ===================== */
+/* --- smoothness: no full-viewport blend/backdrop layers, no blur in scroll reveals --- */
+.grain{mix-blend-mode:normal;opacity:.035;animation:none}
+.tl{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,12,13,.97)}
+.hud__wa{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,0,0,.6)}
+.mon__play,.reel__play{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,0,0,.45)}
+.leak{mix-blend-mode:normal;will-change:auto}
+.open__glow{filter:none}
+html.hero-off .leak,html.hero-off .open__glow,html.hero-off .open__poster img,html.hero-off .open__hint i,html.hero-off .flare{animation-play-state:paused}
+html.hero-off .scene--open .open__art{visibility:hidden}
+.rv{filter:none;will-change:auto;transform:translate3d(0,18px,0);transition:opacity .8s var(--ease-cine),transform .9s var(--ease-cine);transition-delay:var(--rd,0s)}
+.rv.is-in{filter:none}
+.cut-in{animation:none}
+.mon__amb{transform:scale(1.08) translateZ(0);transition:none}
+.reel{filter:none;transition:transform .45s var(--ease-cine)}
+.reel.is-on{filter:none}
+.neg img{filter:none;transition:transform .5s var(--ease-cine)}
+@media (hover:hover){
+  .neg:hover,.jc:hover,.reel:not(.is-on):hover{filter:none}
+  .neg:hover img{filter:none}
+}
+.neg.is-press,.neg:active,.jc.is-press,.jc:active,.reel.is-press:not(.is-on){filter:none}
+html.is-scrolling main{pointer-events:none}
+/* custom crosshair + floating timecode tag removed: the normal mouse pointer is back */
+.cursor{display:none!important}
+html.has-cursor,html.has-cursor a,html.has-cursor button{cursor:auto}
+html.has-cursor a,html.has-cursor button{cursor:pointer}
+
+/* --- the opening frame fits between the top bar and the timeline on every laptop --- */
+@media (min-width:821px){
+  .scene--open{min-height:100vh;min-height:100svh;padding-top:var(--hud);box-sizing:border-box}
+  .open__poster{top:calc(var(--hud) + 6px);height:calc(100svh - var(--hud) - var(--tlh) - 6px);bottom:auto;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 100%)}
+  .open__poster img{object-position:50% 12%;animation:none;transform:none}
+  .open__glow{top:calc(var(--hud) + 4%);height:calc(92% - var(--hud) - var(--tlh))}
+  .open__name{font-size:clamp(72px,min(14.5vw,20vh),236px)}
+  .open__role{margin:clamp(10px,2vh,22px) 0 6px;font-size:clamp(20px,min(2.5vw,4vh),34px)}
+  .open__kicker{margin-bottom:clamp(8px,1.4vh,14px)}
+  .open__loc{margin-bottom:clamp(14px,3vh,28px)}
+  .open__copy{padding-bottom:calc(var(--tlh) + clamp(22px,5vh,56px))}
+  .open__hint{display:none}
+}
+@media (min-width:821px) and (max-height:700px){
+  .open__btns .btn{padding-top:10px;padding-bottom:10px}
+}
+
+/* --- smaller timeline everywhere (~38% shorter), extra-compact on short laptop screens --- */
+:root{--tlh:106px}
+.tl__head{height:22px;gap:14px}
+.tl__tc{font-size:12px}
+.tl__head{font-size:9px}
+.tl__labels,.tl__track{grid-template-rows:12px 14px 18px 20px 14px}
+.tl__labels{font-size:9px;width:38px}
+.tl__ruler span{font-size:8px;top:2px}
+.tl__ruler span::before{height:11px}
+.clip__lab{font-size:8px}
+.tl__audio b{font-size:7px;top:2px}
+.tl__ph span{width:12px;height:12px;left:-6px}
+@media (min-width:821px) and (max-height:700px){
+  :root{--tlh:92px}
+  .tl__head{height:20px}
+  .tl__labels,.tl__track{grid-template-rows:10px 12px 16px 17px 12px}
+  .clip--v .clip__lab{font-size:7px}
+}
+@media (max-width:820px){
+  :root{--tlh:66px}
+  .tl__head{height:18px}
+  .tl__tc{font-size:11px}
+  .tl__now{font-size:8px}
+  .tl__labels{width:24px;grid-template-rows:9px 14px 17px 9px;font-size:7px}
+  .tl__track{grid-template-rows:9px 0 14px 17px 9px}
+  .tl__ruler span{font-size:7px;top:0}
+  .tl__ruler span::before{height:8px}
+  .tl__ph span{width:10px;height:10px;left:-5px}
+}
+html{scroll-padding-top:var(--hud);scroll-padding-bottom:var(--tlh)}
+
+/* --- timeline hint --- */
+.tl__hint{position:absolute;left:50%;bottom:calc(100% + 8px);margin:0;transform:translateX(-50%);white-space:nowrap;pointer-events:auto;cursor:pointer;
+  font:600 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#fff;background:rgba(10,10,11,.88);border:1px solid rgba(255,43,58,.7);
+  padding:7px 12px;border-radius:99px;box-shadow:0 0 0 0 rgba(255,43,58,.5);opacity:0;animation:tlHintIn .7s var(--ease) 2.6s forwards,tlHintPulse 2.2s ease-in-out 3.3s 2;transition:opacity .5s ease,transform .5s ease}
+.tl__hint-t{display:none}
+@media (hover:none),(pointer:coarse){.tl__hint-d{display:none}.tl__hint-t{display:inline}}
+.tl__hint.is-gone{opacity:0!important;transform:translate(-50%,6px);animation:none;pointer-events:none}
+@keyframes tlHintIn{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translateX(-50%)}}
+@keyframes tlHintPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,43,58,0)}50%{box-shadow:0 0 0 6px rgba(255,43,58,.18)}}
+@media (max-width:820px){.tl__hint{font-size:9px;letter-spacing:.14em;padding:6px 10px}}
+@media (prefers-reduced-motion:reduce){.tl__hint{animation:none;opacity:1}}
+
+/* --- Vlogs: even 3-up grid on laptops, small play mark bottom-left --- */
+@media (min-width:821px){
+  .jr{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .jc,.jc:hover{transform:none}
+}
+@media (min-width:821px) and (max-width:1020px){.jr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.jc__play{left:10px;top:auto;bottom:10px;width:34px;height:34px;margin:0;font-size:14px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.55);box-shadow:none;z-index:2;transition:background .28s ease,border-color .28s ease}
+.jc__play svg{width:14px;height:14px}
+.jc:hover .jc__play,.jc:focus-visible .jc__play{background:var(--red);border-color:var(--red)}
+.jc__dur{z-index:2}
+
+/* --- cinematic dim on every video/photo thumbnail: overlay opacity only (GPU-cheap) --- */
+.jc__img::after,.neg::before,.still::after,.sel__it::before,.score__poster::before,.book__cover::before{
+  content:"";position:absolute;left:0;top:0;right:0;bottom:0;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.22) 55%,rgba(0,0,0,.12));opacity:1;transition:opacity .28s ease}
+.neg{position:relative}
+.neg::before{bottom:auto;aspect-ratio:3/4}
+.reel::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:rgba(0,0,0,.3);opacity:1;transition:opacity .28s ease}
+.reel.is-on::before{opacity:0}
+.score__btn,.score__lab,.sel__t,.reel__badge,.reel__ig,.reel__play,.reel__info{z-index:2}
+.score__poster.on::before{display:none}
+@media (hover:hover){
+  .jc:hover .jc__img::after,.jc:focus-visible .jc__img::after,.neg:hover::before,.still:hover::after,.sel__it:hover::before,
+  .score__poster:hover::before,.score__poster:focus-visible::before,.book:hover .book__cover::before,.book__cover:focus-visible::before,.reel:hover::before,.reel:focus-visible::before{opacity:0}
+  .bin__clip:hover img{opacity:1}
+}
+@media (hover:none),(pointer:coarse){
+  .jc__img::after,.neg::before,.still::after,.sel__it::before,.score__poster::before,.book__cover::before{opacity:.55}
+  .reel::before{background:rgba(0,0,0,.15)}
+}
+.jc__img.on::after{display:none}
+@media (max-width:820px){.open__copy{padding-bottom:calc(var(--tlh) + 44px)}}
