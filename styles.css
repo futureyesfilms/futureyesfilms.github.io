@@ -698,3 +698,12 @@ html.no-intro .ln__in::after{animation-delay:3s}
   .gb__row{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:10px}
 }
 @media (prefers-reduced-motion:reduce){.gb__rec{animation:none}.gb__note.is-new{animation:none}.gb__note,.gb__send{transition:none}}
+
+/* v15: compact timeline on laptop/desktop ONLY (SHIFIN 6:37 PM "reduce the size of the timeline"); nothing else changed */
+@media (min-width:821px){
+  :root{--tlh:112px}
+  .tl__head{height:24px}
+  .tl__tc{font-size:13px}
+  .tl__labels,.tl__track{grid-template-rows:12px 15px 21px 24px 16px}
+  .tl__labels{font-size:9px}
+}
