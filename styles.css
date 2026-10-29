@@ -112,7 +112,6 @@ html.no-intro .anim{animation-delay:calc(.15s + var(--d,0)*.07s)}
 .pin{position:relative}
 .pin__in{min-height:100svh;padding:calc(var(--hud) + 18px) clamp(18px,4vw,56px) calc(var(--tlh) + 18px)}
 html.js .scene--films .pin{height:calc(100svh + 4 * 62vh)}
-html.js .scene--vlogs .pin{height:calc(100svh + var(--travel,2400px))}
 html.js .pin__in{position:sticky;top:0;height:100svh;overflow:hidden}
 html:not(.js) .strip{overflow-x:auto;height:70vh}
 html:not(.js) .strip__rail{padding:0 18px}
@@ -706,4 +705,49 @@ html.no-intro .ln__in::after{animation-delay:3s}
   .tl__tc{font-size:13px}
   .tl__labels,.tl__track{grid-template-rows:12px 15px 21px 24px 16px}
   .tl__labels{font-size:9px}
+}
+
+/* ===== v16 smooth: rendering only, no visual change =====
+   While the opening is entirely off screen (plus a 400px margin) its looping light leaks,
+   glow, name sheen and scroll hint are paused and the off-screen art layers are not painted.
+   Identical whenever any part of the opening is on screen. */
+.scene--open.is-off .leak,.scene--open.is-off .open__glow,.scene--open.is-off .ln__out::after,.scene--open.is-off .open__hint i{animation-play-state:paused}
+.scene--open.is-off .open__art,.scene--open.is-off .flare{visibility:hidden}
+
+/* ===== v17: Vertical Cuts is a normal section with a row you scroll yourself =====
+   No pinning and no scroll-driven slide: the page scrolls straight past it.
+   Same cards and card size; the rail box is taller by its padding so the active card's lift and glow are not clipped,
+   and its thin scrollbar sits just under the film strip, clear of the sprocket holes. */
+html.js .scene--vlogs .pin{height:auto}
+html.js .scene--vlogs .pin__in{position:relative}
+.scene--vlogs .strip__rail{left:0;right:0;top:8px;bottom:-16px;padding:22px var(--rpr,45%) 38px var(--rpl,45%);
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+  will-change:auto;transform:none;outline:none}
+.scene--vlogs .reel{scroll-snap-align:center;scroll-snap-stop:normal}
+.scene--vlogs .reel img{-webkit-user-drag:none;user-select:none}
+.scene--vlogs .strip__rail.is-drag{scroll-snap-type:none;cursor:grabbing}
+.scene--vlogs .strip__rail.is-drag .reel{pointer-events:none}
+/* thin film-style scrollbar */
+.scene--vlogs .strip__rail::-webkit-scrollbar{height:8px}
+.scene--vlogs .strip__rail::-webkit-scrollbar-button{display:none;width:0;height:0}
+.scene--vlogs .strip__rail::-webkit-scrollbar-track{background:rgba(255,255,255,.07);border-radius:8px;margin:0 clamp(18px,4vw,56px)}
+.scene--vlogs .strip__rail::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--red2),var(--red));border-radius:8px;box-shadow:0 0 10px rgba(255,43,58,.45)}
+.scene--vlogs .strip__rail::-webkit-scrollbar-thumb:hover{background:var(--red)}
+@supports not selector(::-webkit-scrollbar){.scene--vlogs .strip__rail{scrollbar-width:thin;scrollbar-color:var(--red) rgba(255,255,255,.07)}}
+/* ‹ › arrows */
+.strip__nav{position:absolute;z-index:3;top:50%;width:46px;height:46px;margin-top:-23px;display:grid;place-items:center;border-radius:50%;
+  background:rgba(5,5,5,.78);border:1px solid rgba(255,255,255,.28);color:var(--ink);box-shadow:0 8px 24px rgba(0,0,0,.5);
+  transition:background .25s,border-color .25s,color .25s,opacity .25s,transform .25s var(--ease)}
+.strip__nav svg{width:22px;height:22px}
+.strip__nav--prev{left:clamp(10px,2vw,28px)}
+.strip__nav--next{right:clamp(10px,2vw,28px)}
+.strip__nav:hover{background:var(--red);border-color:var(--red);color:#fff;transform:scale(1.06)}
+.strip__nav:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.strip__nav[disabled]{opacity:.28;pointer-events:none}
+html:not(.js) .strip__nav{display:none}
+@media (hover:none) and (pointer:coarse){.strip__nav{display:none}}
+@media (max-width:820px){
+  .scene--vlogs .strip__rail{top:8px;bottom:-12px;padding-top:18px;padding-bottom:34px}
+  .scene--vlogs .strip__rail::-webkit-scrollbar{height:4px}
+  .strip__nav{width:38px;height:38px;margin-top:-19px}
 }

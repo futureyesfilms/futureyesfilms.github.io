@@ -102,12 +102,14 @@
   var films=$('#films'),filmsPin=$('.pin',films),vlogs=$('#vlogs'),vlogsPin=$('.pin',vlogs),strip=$('#strip'),rail=$('#rail'),reels=$$('.reel',rail);
   var poster=$('.open__poster'),copy=$('.open__copy');
   var books=$('#books'),bookEls=$$('.book',books);
-  var L={vh:0,max:1,starts:[],ends:[],tops:[],films:{top:0,R:1},vlogs:{top:0,R:1,c0:0,c1:0,sw:0},trackW:0,viewW:0,center:false};
+  var L={vh:0,max:1,starts:[],ends:[],tops:[],films:{top:0,R:1},cards:[],trackW:0,viewW:0,center:false};
   var clips=[];
   function fmt(fr){fr=Math.max(0,Math.min(TOTAL-1,Math.round(fr)));var f=fr%FPS,s=Math.floor(fr/FPS),m=Math.floor(s/60),h=Math.floor(m/60);s%=60;m%=60;
     return [h,m,s,f].map(function(n){return n<10?'0'+n:''+n}).join(':')}
   function absTop(el){var t=0;while(el){t+=el.offsetTop;el=el.offsetParent}return t}
   function clamp(x,a,b){return x<a?a:x>b?b:x}
+  /* v16 smooth: restart a class animation on the next frame instead of forcing a synchronous layout (offsetWidth) inside the scroll frame */
+  function rekick(el,cls){el.classList.remove(cls);w.requestAnimationFrame(function(){el.classList.add(cls)})}
 
   /* ---------- clip model ---------- */
   function addClip(lane,cls,label,thumb,span,jump,extra){
@@ -132,7 +134,7 @@
     var vi=sceneIdx('vlogs');
     reels.forEach(function(r,j){
       var id=(r.querySelector('img').getAttribute('src').match(/ig\/([^-]+(?:-[^-]+)*)-270/)||[])[1];
-      addClip('V2','clip--v clip--v2',$('.reel__t',r).textContent,'assets/img/tl/'+id+'.webp',function(){var V=L.vlogs,n=reels.length-1,a=V.top+(j-.5)/n*V.R,b=V.top+(j+.5)/n*V.R;if(j===0)a=L.starts[vi];if(j===n)b=L.ends[vi];return [a,b]},function(){var V=L.vlogs;return V.top+j/(reels.length-1)*V.R},{reel:j});
+      addClip('V2','clip--v clip--v2',$('.reel__t',r).textContent,'assets/img/tl/'+id+'.webp',function(){var s=S(vi),n=reels.length;return [s[0]+(s[1]-s[0])*j/n,s[0]+(s[1]-s[0])*(j+1)/n]},function(){return L.tops[vi]},{reel:j});
     });
     var ji=sceneIdx('journey'),jcs=$$('.jc');
     jcs.forEach(function(c,k){var v=JOURNEY[k];
@@ -161,20 +163,12 @@
   /* ---------- layout ---------- */
   function measure(){
     L.vh=w.innerHeight;
-    // vlogs travel
-    if(reels.length){
-      var first=reels[0],last=reels[reels.length-1];
-      L.vlogs.c0=first.offsetLeft+first.offsetWidth/2;L.vlogs.c1=last.offsetLeft+last.offsetWidth/2;
-      var travel=Math.max(400,L.vlogs.c1-L.vlogs.c0);
-      if(Math.abs(travel-(L._travel||0))>2){L._travel=travel;vlogs.style.setProperty('--travel',Math.round(travel)+'px')}
-      L.vlogs.sw=strip.clientWidth;
-    }
+    measureRail();
     var docH=d.documentElement.scrollHeight;L.max=Math.max(1,docH-L.vh);
     L.tops=scenes.map(absTop);
     L.starts=L.tops.map(function(t,i){return i===0?0:clamp(t-L.vh*.4,0,L.max)});
     L.ends=L.starts.map(function(s,i){return i<scenes.length-1?L.starts[i+1]:L.max});
     L.films.top=absTop(filmsPin);L.films.R=Math.max(1,filmsPin.offsetHeight-L.vh);
-    L.vlogs.top=absTop(vlogsPin);L.vlogs.R=Math.max(1,vlogsPin.offsetHeight-L.vh);
     var dr=d.getElementById('drilling');L.drillTop=dr?absTop(dr)-L.vh*.45:1e9;
     L.viewW=view.clientWidth;
     var phone=w.innerWidth<=820;
@@ -200,7 +194,7 @@
     if(!force&&p===L.last)return;L.last=p;
     // timeline
     if(L.center){track.style.transform='translate3d('+(L.viewW/2-p*L.trackW)+'px,0,0)';ph.style.transform='translate3d('+(L.viewW/2)+'px,0,0)'}
-    else{track.style.transform='none';ph.style.transform='translate3d('+(p*L.trackW)+'px,0,0)'}
+    else{if(cur.track!=='none'){cur.track='none';track.style.transform='none'}ph.style.transform='translate3d('+(p*L.trackW)+'px,0,0)'}
     var tc=fmt(p*(TOTAL-1));if(tc!==cur.tc){cur.tc=tc;tcEl.textContent=tc;if(cursorTc)cursorTc.textContent=tc}
     // hero parallax (only while the opening is on screen)
     if(y<L.vh*1.1&&!reduce){var hq=y/L.vh;poster.style.transform='translate3d(0,'+(y*.28)+'px,0) scale('+(1+hq*.08)+')';copy.style.transform='translate3d(0,'+(y*-.12)+'px,0)';copy.style.opacity=String(1-hq*.9);L.heroReset=false}
@@ -212,10 +206,6 @@
     // films
     var F=L.films,fq=clamp((y-F.top)/F.R,0,.9999),fk=Math.floor(fq*FILMS.length);
     if(fk!==cur.film)setFilm(fk);
-    // vlogs
-    var V=L.vlogs,vq=clamp((y-V.top)/V.R,0,1),cx=V.c0+vq*(V.c1-V.c0);
-    rail.style.transform='translate3d('+(V.sw/2-cx)+'px,0,0)';
-    var rk=Math.round(vq*(reels.length-1));if(rk!==cur.reel)setReel(rk);
     // clips under playhead
     for(var c=0;c<clips.length;c++){var cl=clips[c],on=p>=cl.a&&p<cl.b;if(on!==cl.on){cl.on=on;cl.el.classList.toggle('is-on',on)}}
   }
@@ -224,12 +214,12 @@
   function setScene(i,animate){
     var prev=cur.scene;cur.scene=i;var sc=scenes[i],lab=sc.getAttribute('data-label');
     hudScene.textContent=lab;nowEl.textContent=lab;if(animate&&prev!==i){try{d.dispatchEvent(new CustomEvent('edit:scene'))}catch(e){}}
-    sc.classList.remove('is-live');void sc.offsetWidth;sc.classList.add('is-live');
+    rekick(sc,'is-live');
     if(animate&&!reduce&&!dragging){
       var now=Date.now();
-      if(now-lastWhip>380){lastWhip=now;whip.classList.remove('go');void whip.offsetWidth;whip.classList.add('go')}
+      if(now-lastWhip>380){lastWhip=now;rekick(whip,'go')}
       var inner=$('.pin__in>*,.wrap,.roll',sc);
-      if(inner&&i>prev){inner.classList.remove('cut-in');void inner.offsetWidth;inner.classList.add('cut-in')}
+      if(inner&&i>prev){rekick(inner,'cut-in')}
     }
   }
 
@@ -239,7 +229,7 @@
   function stopFilm(){if(stage.classList.contains('on')){stage.textContent='';stage.classList.remove('on')}}
   function setFilm(k){
     var first=cur.film===-1;cur.film=k;var f=FILMS[k];stopFilm();
-    layers.forEach(function(l,i){var on=i===k;l.classList.toggle('is-on',on);if(on&&!first&&!reduce){l.classList.remove('cut-in');void l.offsetWidth;l.classList.add('cut-in')}});
+    layers.forEach(function(l,i){var on=i===k;l.classList.toggle('is-on',on);if(on&&!first&&!reduce){rekick(l,'cut-in')}});
     binClips.forEach(function(b,i){b.classList.toggle('is-on',i===k);if(i===k)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
     monTitle.textContent=f.t;monKind.textContent=f.k+' · '+f.d;filmTake.textContent=k+1;
     rec.lastChild.textContent=f.d;
@@ -268,6 +258,55 @@
   /* ---------- vlogs ---------- */
   function setReel(k){cur.reel=k;reels.forEach(function(r,i){r.classList.toggle('is-on',i===k)});var t=$('#reelTake');if(t)t.textContent=k+1}
 
+  /* ---------- v17: Vertical Cuts row (native horizontal scroll, snap, arrows, mouse drag) ----------
+     The page is never held: the vertical wheel scrolls the page, Shift+wheel / trackpad / swipe / scrollbar move the row. */
+  var railPrev=$('#railPrev'),railNext=$('#railNext'),railTick=false,railGoal=-1,railGoalT=0;
+  function measureRail(){
+    if(!reels.length)return;
+    var cw=rail.clientWidth,f=reels[0].offsetWidth,l=reels[reels.length-1].offsetWidth;
+    rail.style.setProperty('--rpl',Math.max(0,Math.round((cw-f)/2))+'px');
+    rail.style.setProperty('--rpr',Math.max(0,Math.round((cw-l)/2))+'px');
+    L.cards=reels.map(function(r){return r.offsetLeft+r.offsetWidth/2});
+    L.railW=cw;L.railMax=Math.max(0,rail.scrollWidth-cw);
+    railState();
+  }
+  function nearest(){var c=rail.scrollLeft+L.railW/2,b=0,bd=1e9;for(var i=0;i<L.cards.length;i++){var dd=Math.abs(L.cards[i]-c);if(dd<bd){bd=dd;b=i}}return b}
+  function railState(){
+    railTick=false;if(!L.cards.length)return;
+    var k=nearest();if(k!==cur.reel)setReel(k);
+    var sl=rail.scrollLeft;
+    if(railPrev)railPrev.disabled=sl<=2;
+    if(railNext)railNext.disabled=sl>=L.railMax-2;
+  }
+  function railTo(k,instant){
+    k=clamp(k,0,reels.length-1);railGoal=k;railGoalT=Date.now();
+    rail.scrollTo({left:Math.round(L.cards[k]-L.railW/2),behavior:(instant||reduce)?'auto':'smooth'});
+  }
+  function railStep(dir){var base=(railGoal>=0&&Date.now()-railGoalT<650)?railGoal:nearest();railTo(base+dir)}
+  if(rail){
+    rail.addEventListener('scroll',function(){if(!railTick){railTick=true;w.requestAnimationFrame(railState)}},{passive:true});
+    if(railPrev)railPrev.addEventListener('click',function(){railStep(-1)});
+    if(railNext)railNext.addEventListener('click',function(){railStep(1)});
+    rail.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();railStep(1)}else if(e.key==='ArrowLeft'){e.preventDefault();railStep(-1)}});
+    /* mouse drag to scroll (touch and pens already swipe natively) */
+    var drag=null,eat=false;
+    rail.addEventListener('dragstart',function(e){e.preventDefault()});
+    rail.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0)return;drag={x:e.clientX,s:rail.scrollLeft,moved:false,id:e.pointerId}});
+    w.addEventListener('pointermove',function(e){
+      if(!drag)return;var dx=e.clientX-drag.x;
+      if(!drag.moved){if(Math.abs(dx)<6)return;drag.moved=true;rail.classList.add('is-drag');try{rail.setPointerCapture(drag.id)}catch(_){}}
+      rail.scrollLeft=drag.s-dx;
+    });
+    function endDrag(){
+      if(!drag)return;var m=drag.moved;drag=null;if(!m)return;
+      eat=true;setTimeout(function(){eat=false},0);
+      railTo(nearest());
+      setTimeout(function(){rail.classList.remove('is-drag')},reduce?0:520);
+    }
+    w.addEventListener('pointerup',endDrag);w.addEventListener('pointercancel',endDrag);
+    rail.addEventListener('click',function(e){if(eat){e.preventDefault();e.stopPropagation();eat=false}},true);
+  }
+
   /* ---------- navigation ---------- */
   function go(y,instant){w.scrollTo({top:Math.round(clamp(y,0,L.max)),behavior:(instant||reduce)?'auto':'smooth'})}
   $$('[data-jump]').forEach(function(a){a.addEventListener('click',function(e){
@@ -286,6 +325,7 @@
   }
   function jumpClip(c){
     go(c.jump());
+    if(c.extra&&c.extra.reel!=null)railTo(c.extra.reel,false);
     if(c.extra&&c.extra.book!=null&&w.innerWidth<=820){var b=bookEls[c.extra.book],box=$('.books');box.scrollTo({left:b.offsetLeft-box.offsetLeft-18,behavior:reduce?'auto':'smooth'})}
   }
 
@@ -510,7 +550,7 @@
   var last=0;
   d.addEventListener('edit:scene',function(){
     var n=Date.now();if(n-last<700)return;last=n;
-    gate.classList.remove('go');void gate.offsetWidth;gate.classList.add('go');
+    gate.classList.remove('go');requestAnimationFrame(function(){gate.classList.add('go')});
   });
 })();
 
@@ -596,4 +636,26 @@
   [nameEl,msgEl].forEach(function(x){x.addEventListener('input',function(){if(status.classList.contains('is-err')||status.classList.contains('is-ok'))say(HINT)})});
   load();
   setInterval(function(){if(notes.length)paint()},60000);
+})();
+
+
+/* ---------- v16 smooth: pause the opening's looping effects only while the opening is fully off screen ----------
+   Nothing changes while it is visible; a 400px margin wakes them before they scroll back into view. */
+(function(){
+  var o=document.querySelector('.scene--open');
+  if(!o||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(es){es.forEach(function(e){o.classList.toggle('is-off',!e.isIntersecting)})},{rootMargin:'400px 0px 400px 0px'}).observe(o);
+})();
+
+/* ---------- v16 smooth: fetch and decode the Vertical Cuts covers just before that section arrives ----------
+   They were lazy, so covers that slide in from the right were downloading and decoding mid-scroll.
+   Same images, same sizes; they are simply ready before they are seen. */
+(function(){
+  var v=document.getElementById('vlogs');
+  if(!v||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){
+    if(!es[0].isIntersecting)return;io.disconnect();
+    [].forEach.call(v.querySelectorAll('.reel img'),function(im){im.loading='eager';if(im.decode)im.decode().catch(function(){})});
+  },{rootMargin:'150% 0px 150% 0px'});
+  io.observe(v);
 })();
