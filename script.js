@@ -97,7 +97,7 @@
   var FPS=24,TOTAL=5*60*FPS;
   var $=function(s,c){return (c||d).querySelector(s)},$$=function(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))};
   var scenes=$$('.scene'),tl=$('#timeline'),view=$('#tlView'),track=$('#tlTrack'),ph=$('#playhead'),ruler=$('#tlRuler'),
-      tcEl=$('#tc'),nowEl=$('#tlNow'),hudScene=$('#hudScene'),whip=$('#whip'),cursorTc=null;
+      tcEl=$('#tc'),nowEl=$('#tlNow'),hudScene=$('#hudScene'),whip=$('#whip'),cursorTc=$('#cursorTc');
   var lanes={};$$('.tl__lane').forEach(function(l){lanes[l.getAttribute('data-lane')]=l});
   var films=$('#films'),filmsPin=$('.pin',films),vlogs=$('#vlogs'),vlogsPin=$('.pin',vlogs),strip=$('#strip'),rail=$('#rail'),reels=$$('.reel',rail);
   var poster=$('.open__poster'),copy=$('.open__copy');
@@ -203,8 +203,7 @@
     else{track.style.transform='none';ph.style.transform='translate3d('+(p*L.trackW)+'px,0,0)'}
     var tc=fmt(p*(TOTAL-1));if(tc!==cur.tc){cur.tc=tc;tcEl.textContent=tc;if(cursorTc)cursorTc.textContent=tc}
     // hero parallax (only while the opening is on screen)
-    var hoff=y>L.vh*1.05;if(hoff!==L.hoff){L.hoff=hoff;root.classList.toggle('hero-off',hoff)}
-    if(y<L.vh*1.1&&!reduce){var hq=y/L.vh;poster.style.transform='translate3d(0,'+(y*.1).toFixed(1)+'px,0)';copy.style.transform='translate3d(0,'+(y*-.06).toFixed(1)+'px,0)';copy.style.opacity=String(Math.max(0,1-hq*1.1).toFixed(3));L.heroReset=false}
+    if(y<L.vh*1.1&&!reduce){var hq=y/L.vh;poster.style.transform='translate3d(0,'+(y*.28)+'px,0) scale('+(1+hq*.08)+')';copy.style.transform='translate3d(0,'+(y*-.12)+'px,0)';copy.style.opacity=String(1-hq*.9);L.heroReset=false}
     else if(!L.heroReset){L.heroReset=true;copy.style.opacity='0'}
     // scene
     var si=0;for(var i=0;i<L.starts.length;i++){if(y>=L.starts[i]-1)si=i}
@@ -220,17 +219,17 @@
     // clips under playhead
     for(var c=0;c<clips.length;c++){var cl=clips[c],on=p>=cl.a&&p<cl.b;if(on!==cl.on){cl.on=on;cl.el.classList.toggle('is-on',on)}}
   }
-  var scrT=0,scrOn=false;function scrEnd(){scrOn=false;root.classList.remove('is-scrolling')}
-  function onScroll(){if(!ticking){ticking=true;w.requestAnimationFrame(function(){render(false)})}
-    if(!scrOn){scrOn=true;root.classList.add('is-scrolling')}clearTimeout(scrT);scrT=setTimeout(scrEnd,180)}
+  function onScroll(){if(!ticking){ticking=true;w.requestAnimationFrame(function(){render(false)})}}
 
   function setScene(i,animate){
     var prev=cur.scene;cur.scene=i;var sc=scenes[i],lab=sc.getAttribute('data-label');
     hudScene.textContent=lab;nowEl.textContent=lab;if(animate&&prev!==i){try{d.dispatchEvent(new CustomEvent('edit:scene'))}catch(e){}}
-    sc.classList.remove('is-live');w.requestAnimationFrame(function(){w.requestAnimationFrame(function(){sc.classList.add('is-live')})});
+    sc.classList.remove('is-live');void sc.offsetWidth;sc.classList.add('is-live');
     if(animate&&!reduce&&!dragging){
       var now=Date.now();
-      if(now-lastWhip>380){lastWhip=now;whip.classList.remove('go');w.requestAnimationFrame(function(){whip.classList.add('go')})}
+      if(now-lastWhip>380){lastWhip=now;whip.classList.remove('go');void whip.offsetWidth;whip.classList.add('go')}
+      var inner=$('.pin__in>*,.wrap,.roll',sc);
+      if(inner&&i>prev){inner.classList.remove('cut-in');void inner.offsetWidth;inner.classList.add('cut-in')}
     }
   }
 
@@ -291,9 +290,7 @@
   }
 
   /* ---------- timeline scrub ---------- */
-  var dragging=false,ds=null,scrubQ=false,scrubY=0;
-  var tlHint=d.getElementById('tlHint');function hideTlHint(){if(tlHint&&!tlHint.classList.contains('is-gone')){tlHint.classList.add('is-gone')}}
-  if(tlHint){setTimeout(hideTlHint,6500);tlHint.addEventListener('click',hideTlHint)}
+  var dragging=false,ds=null;
   view.addEventListener('pointerdown',function(e){
     if(e.button>0)return;
     ds={x:e.clientX,y:e.clientY,p:clamp((w.scrollY)/L.max,0,1),moved:false,id:e.pointerId,target:e.target};
@@ -303,9 +300,8 @@
     var dx=e.clientX-ds.x;
     if(!ds.moved){if(Math.abs(dx)<6)return;if(Math.abs(e.clientY-ds.y)>Math.abs(dx)&&e.pointerType!=='mouse'){ds=null;return}
       ds.moved=true;dragging=true;tl.classList.add('is-drag');try{view.setPointerCapture(e.pointerId)}catch(_){}}
-    var np=L.center?ds.p-dx/L.trackW:ds.p+dx/L.trackW;scrubY=Math.round(clamp(np,0,1)*L.max);
-    if(!scrubQ){scrubQ=true;w.requestAnimationFrame(function(){scrubQ=false;w.scrollTo(0,scrubY)})}
-    hideTlHint();
+    var np=L.center?ds.p-dx/L.trackW:ds.p+dx/L.trackW;
+    w.scrollTo(0,Math.round(clamp(np,0,1)*L.max));
   });
   function end(e){
     if(!ds)return;var s=ds;ds=null;
@@ -323,7 +319,7 @@
 
   /* ---------- cursor ---------- */
   var cursor=$('#cursor');
-  if(cursor&&w.__editCursor&&w.matchMedia('(hover: hover) and (pointer: fine)').matches){
+  if(cursor&&w.matchMedia('(hover: hover) and (pointer: fine)').matches){
     var mx=0,my=0,cq=false;
     w.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;
       if(!root.classList.contains('has-cursor'))root.classList.add('has-cursor');
