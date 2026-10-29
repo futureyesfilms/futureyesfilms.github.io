@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en" class="no-intro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shifin Shajahan · The Edit · FuturEyes</title>
+<meta name="description" content="Shifin Shajahan (FuturEyes): filmmaker, editor and storyteller from Kerala, now in Lindsay, Ontario. Scrub through his films, vertical cuts, vlogs, violin, books and story like an edit timeline.">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FuturEyes">
+<meta property="og:title" content="Shifin Shajahan · The Edit">
+<meta property="og:description" content="Filmmaker · Editor · Storyteller. Scroll to scrub the timeline.">
+<meta property="og:url" content="https://futureyesfilms.github.io/">
+<meta property="og:image" content="https://futureyesfilms.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/poster-810.webp" imagesrcset="assets/img/poster-540.webp 540w, assets/img/poster-810.webp 810w, assets/img/poster-1088.webp 1088w" imagesizes="(max-width: 820px) 100vw, 42vw" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=10">
+<script src="script.js?v=10" defer></script>
+</head>
+<body>
+<a class="skip" href="#films">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="whip" id="whip" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><i class="cursor__x"></i><span class="cursor__tc" id="cursorTc">00:00:00:00</span></div>
+
+<header class="hud">
+  <div class="hud__bar">
+  <a class="brand" href="#open" data-jump="open" aria-label="FuturEyes, back to the start">FUTUR<b>EYES</b></a>
+  <p class="hud__scene" aria-live="polite"><i class="hud__rec"></i><span id="hudScene">OPENING TITLES</span></p>
+  <div class="hud__act"><button class="hud__sfx" id="sfxBtn" type="button" aria-pressed="true" title="Sound effects on/off"><span class="hud__sfxi" aria-hidden="true">🔊</span><span class="hud__sfxl">SFX</span><i class="hud__sfxd" aria-hidden="true"></i><span class="sr" id="sfxState"> on</span></button>
+  <a class="hud__wa" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20saw%20your%20website%20and%20wanted%20to%20get%20in%20touch." target="_blank" rel="noopener" aria-label="Message Shifin on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></svg><span>WhatsApp</span></a></div>
+  </div>
+  <nav class="chips" id="chips" aria-label="Shortcuts"><div class="chips__row"><a class="chip" href="#open" data-jump="open" data-chip="open"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 10v9.5h12V10"/></svg><span>Home</span></a><a class="chip" href="#films" data-jump="films" data-chip="films"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M3.5 9h17M3.5 15h17M8 5v14M16 5v14"/></svg><span>Films</span></a><a class="chip" href="#vlogs" data-jump="vlogs" data-chip="vlogs"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 8.5v7l4.5-3.5z" fill="currentColor" stroke="none"/></svg><span>Vertical Cuts</span></a><a class="chip" href="#journey" data-jump="journey" data-chip="journey"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="M16 10.5l5.5-3v9l-5.5-3"/></svg><span>Vlogs</span></a><a class="chip" href="#strings" data-jump="strings" data-chip="strings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18a3 3 0 1 0-3-3"/><path d="M6 15l-2.5 4.5 2 1L8 16"/><path d="M14.5 9.5L20.5 3.5"/><path d="M9.5 14.5a3.2 3.2 0 0 0 .6-3.4l2.7-2.7a3.2 3.2 0 0 0 3.4-.6 2.2 2.2 0 0 1 .3 3.1l-4 4a2.2 2.2 0 0 1-3 .3z"/></svg><span>Violin</span></a><a class="chip" href="#selects" data-jump="selects" data-chip="selects"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>Selects</span></a><a class="chip" href="#books" data-jump="books" data-chip="books"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2 2 0 0 1 6 4h13v14H6a2 2 0 0 0-2 2z"/><path d="M4 20V5.5"/><path d="M8 8h7"/></svg><span>Books</span></a><a class="chip" href="#about" data-jump="about" data-chip="about"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg><span>About</span></a><a class="chip" href="#drilling" data-jump="drilling" data-chip="drilling"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v4"/><path d="M8 6.5h8l-1.5 5h-5z"/><path d="M12 11.5v6l-1.5 2.5h3L12 17.5"/><path d="M4 21h16"/></svg><span>Drilling / CV</span></a><a class="chip" href="#notes" data-jump="notes" data-chip="notes"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg><span>Notes</span></a><i class="chips__sep" aria-hidden="true"></i><a class="chip" href="https://www.instagram.com/futureyes___/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a><a class="chip" href="https://www.youtube.com/@FuturEyes9955" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg><span>YouTube</span></a><a class="chip" href="https://www.linkedin.com/in/shifin-shajahan-54799b279" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5.3 8.6H2.4V21h2.9zM3.9 3a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zM21.6 13.8c0-3.3-1.8-5.4-4.6-5.4-1.6 0-2.7.9-3.2 1.8V8.6H11V21h2.9v-6.4c0-1.6.6-3 2.3-3s2.4 1.4 2.4 3V21h3z"/></svg><span>LinkedIn</span></a><a class="chip chip--wa" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20saw%20your%20website%20and%20wanted%20to%20get%20in%20touch." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></svg><span>WhatsApp</span></a><a class="chip" href="mailto:shajahanshifin88@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span>Email</span></a></div></nav>
+</header>
+
+<main id="main">
+<section class="scene scene--open" id="open" data-scene="0" data-label="OPENING TITLES" data-tl="TITLE · SHIFIN SHAJAHAN" aria-labelledby="hero-h">
+  <div class="open__art" aria-hidden="true">
+    <div class="open__glow"></div><div class="leak leak--1"></div><div class="leak leak--2"></div><div class="leak leak--3"></div>
+    <picture class="open__poster"><img src="assets/img/poster-810.webp" srcset="assets/img/poster-540.webp 540w, assets/img/poster-810.webp 810w, assets/img/poster-1088.webp 1088w" sizes="(max-width: 820px) 100vw, 42vw" alt="" width="1088" height="1920" fetchpriority="high" decoding="async"></picture>
+  </div>
+  <div class="open__copy">
+    <p class="open__kicker anim" style="--d:0">FUTUREYES <span>presents</span></p>
+    <h1 id="hero-h" class="open__name" aria-label="Shifin Shajahan"><span class="ln ln--1" aria-hidden="true"><span class="ln__in"><span class="ch" style="--i:0">S</span><span class="ch" style="--i:1">H</span><span class="ch" style="--i:2">I</span><span class="ch" style="--i:3">F</span><span class="ch" style="--i:4">I</span><span class="ch" style="--i:5">N</span></span></span><span class="ln ln--2" aria-hidden="true"><span class="ln__out"><span class="ch" style="--i:3">S</span><span class="ch" style="--i:4">H</span><span class="ch" style="--i:5">A</span><span class="ch" style="--i:6">J</span><span class="ch" style="--i:7">A</span><span class="ch" style="--i:8">H</span><span class="ch" style="--i:9">A</span><span class="ch" style="--i:10">N</span></span></span></h1>
+    <p class="open__role anim" style="--d:3">Filmmaker <i>·</i> Editor <i>·</i> Storyteller <i>·</i> Violinist</p>
+    <p class="open__loc anim" style="--d:4">KERALA <span aria-hidden="true">→</span><span class="sr"> to </span> LINDSAY, ONTARIO</p>
+    <div class="open__btns anim" style="--d:5">
+      <a class="btn btn--red" href="#films" data-jump="films"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>Play the edit</span></a>
+      <a class="btn btn--ghost" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20saw%20your%20website%20and%20I%27d%20like%20to%20book%20a%20photo/video%20shoot." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></svg><span>Book a shoot</span></a>
+    </div>
+  </div>
+  <i class="flare" aria-hidden="true"></i>
+  <p class="open__hint anim" style="--d:6" aria-hidden="true"><i></i>Scroll to scrub the timeline</p>
+</section>
+<section class="scene scene--films" id="films" data-scene="1" data-label="SCENE 01 · FILMS" data-tl="S01 · FILMS" aria-labelledby="films-h">
+  <div class="pin">
+    <div class="pin__in films">
+      <div class="films__head"><div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 01</span><span class="slate__f slate__name">FILMS</span><span class="slate__f"><b>TAKE</b> <em id="filmTake">1</em></span></div></div><h2 id="films-h" class="h2">Films <em>I shot &amp; edited</em></h2></div>
+      <div class="mon">
+        <div class="mon__amb" id="monAmb" aria-hidden="true"></div>
+        <div class="mon__screen" id="monitor">
+          <figure class="mon__layer is-on" data-i="0"><img src="assets/img/work/5qsmpCZJ7zg-640.webp?v=6" srcset="assets/img/work/5qsmpCZJ7zg-640.webp?v=6 640w, assets/img/work/5qsmpCZJ7zg-1280.webp?v=6 1280w" sizes="(max-width: 820px) 100vw, 60vw" alt="" width="1280" height="720" loading="lazy" decoding="async"></figure><figure class="mon__layer" data-i="1"><img src="assets/img/work/3T-e9hRN0iY-640.webp" srcset="assets/img/work/3T-e9hRN0iY-640.webp 640w, assets/img/work/3T-e9hRN0iY-1280.webp 1280w" sizes="(max-width: 820px) 100vw, 60vw" alt="" width="1280" height="720" loading="lazy" decoding="async"></figure><figure class="mon__layer" data-i="2"><img src="assets/img/work/3aRzQR3Negw-640.webp" srcset="assets/img/work/3aRzQR3Negw-640.webp 640w, assets/img/work/3aRzQR3Negw-1280.webp 1280w" sizes="(max-width: 820px) 100vw, 60vw" alt="" width="1280" height="720" loading="lazy" decoding="async"></figure><figure class="mon__layer" data-i="3"><img src="assets/img/work/28nfyVCx37c-640.webp" srcset="assets/img/work/28nfyVCx37c-640.webp 640w, assets/img/work/28nfyVCx37c-1280.webp 1280w" sizes="(max-width: 820px) 100vw, 60vw" alt="" width="1280" height="720" loading="lazy" decoding="async"></figure>
+          <div class="mon__stage" id="stage"></div>
+          <span class="mon__corner mon__corner--tl"></span><span class="mon__corner mon__corner--tr"></span><span class="mon__corner mon__corner--bl"></span><span class="mon__corner mon__corner--br"></span>
+          <span class="mon__tag">PGM</span><span class="mon__rec"><i></i>1:08</span>
+          <button class="mon__play" type="button" id="monPlay" aria-label="Play FADE"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="mon__info">
+          <p class="mon__kind" id="monKind">Short horror film · 1:08</p>
+          <h3 class="mon__title" id="monTitle">FADE</h3>
+          <div class="mon__actions"><button class="btn btn--light" type="button" id="monBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>Play film</span></button><a class="mon__yt" id="monYt" href="https://www.youtube.com/watch?v=5qsmpCZJ7zg" target="_blank" rel="noopener">Open on YouTube ↗</a></div>
+        </div>
+        <ol class="bin" aria-label="Films"><li><a class="bin__clip is-on" href="https://www.youtube.com/watch?v=5qsmpCZJ7zg" target="_blank" rel="noopener" data-film="0" data-yt="5qsmpCZJ7zg" data-title="FADE" data-kind="Short horror film" data-dur="1:08"><img src="assets/img/tl/5qsmpCZJ7zg.webp?v=6" alt="" width="128" height="72" loading="lazy"><span class="bin__txt"><span class="bin__n">01</span><span class="bin__t">FADE</span><span class="bin__m">Short horror film · 1:08</span></span></a></li><li><a class="bin__clip" href="https://www.youtube.com/watch?v=3T-e9hRN0iY" target="_blank" rel="noopener" data-film="1" data-yt="3T-e9hRN0iY" data-title="Canadian Couple’s Engagement" data-kind="Engagement film" data-dur="3:28" data-ext><img src="assets/img/tl/3T-e9hRN0iY.webp" alt="" width="128" height="72" loading="lazy"><span class="bin__txt"><span class="bin__n">02</span><span class="bin__t">Canadian Couple’s Engagement</span><span class="bin__m">Engagement film · 3:28</span></span></a></li><li><a class="bin__clip" href="https://www.youtube.com/watch?v=3aRzQR3Negw" target="_blank" rel="noopener" data-film="2" data-yt="3aRzQR3Negw" data-title="Futureyes Presents" data-kind="Cinematic short" data-dur="0:35"><img src="assets/img/tl/3aRzQR3Negw.webp" alt="" width="128" height="72" loading="lazy"><span class="bin__txt"><span class="bin__n">03</span><span class="bin__t">Futureyes Presents</span><span class="bin__m">Cinematic short · 0:35</span></span></a></li><li><a class="bin__clip" href="https://www.youtube.com/watch?v=28nfyVCx37c" target="_blank" rel="noopener" data-film="3" data-yt="28nfyVCx37c" data-title="Groom’s Night Rave" data-kind="Wedding party film" data-dur="4:50"><img src="assets/img/tl/28nfyVCx37c.webp" alt="" width="128" height="72" loading="lazy"><span class="bin__txt"><span class="bin__n">04</span><span class="bin__t">Groom’s Night Rave</span><span class="bin__m">Wedding party film · 4:50</span></span></a></li></ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="scene scene--vlogs" id="vlogs" data-scene="2" data-label="SCENE 02 · VERTICAL CUTS" data-tl="S02 · VERTICAL CUTS" aria-labelledby="vlogs-h">
+  <div class="pin">
+    <div class="pin__in vlogs">
+      <div class="vlogs__head"><div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 02</span><span class="slate__f slate__name">VERTICAL CUTS</span><span class="slate__f"><b>TAKE</b> <em id="reelTake">1</em></span></div></div><h2 id="vlogs-h" class="h2">Vertical Cuts <em>Portraits, music and moments, shot for the phone screen</em></h2><a class="follow" href="https://www.instagram.com/futureyes___/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><span>@futureyes___ ↗</span></a></div>
+      <div class="strip" id="strip"><div class="strip__rail" id="rail"></div></div><noscript><a class="follow" href="https://www.instagram.com/futureyes___/" target="_blank" rel="noopener"><span>Watch on Instagram ↗</span></a></noscript>
+    </div>
+  </div>
+</section>
+<section class="scene scene--journey" id="journey" data-scene="3" data-label="SCENE 03 · VLOGS" data-tl="S03 · VLOGS" aria-labelledby="journey-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 03</span><span class="slate__f slate__name">VLOGS</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <p class="tagline">LONG CUTS · YOUTUBE</p>
+    <h2 id="journey-h" class="h2">The Journey <em>Long-form vlogs from life in Canada</em></h2>
+    <div class="jr" id="journeyList" tabindex="0" role="group" aria-labelledby="journey-h"></div>
+    <noscript><a class="follow" href="https://www.youtube.com/@FuturEyes9955" target="_blank" rel="noopener"><span>Watch the vlogs on YouTube ↗</span></a></noscript>
+  </div>
+</section>
+<section class="scene scene--strings" id="strings" data-scene="4" data-label="SCENE 04 · ON THE STRINGS" data-tl="S04 · SCORE" aria-labelledby="strings-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 04</span><span class="slate__f slate__name">SCORE</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <div class="score">
+      <div class="score__txt">
+        <p class="tagline">A1 · ON THE STRINGS</p>
+        <h2 id="strings-h" class="h2">The Score <em>Behind the camera, I also play the violin.</em></h2>
+        <p class="score__t">Until I Found You <i>·</i> Violin Cover</p>
+        <p class="score__d">Night view · 1:59 · on YouTube</p>
+        <div class="score__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="score__player">
+        <a class="score__poster" id="scorePlay" href="https://www.youtube.com/watch?v=hQ0sMsuce8I" target="_blank" rel="noopener" data-yt="hQ0sMsuce8I" aria-label="Play: Until I Found You, violin cover">
+          <img src="assets/img/music/hQ0sMsuce8I-1120.webp" srcset="assets/img/music/hQ0sMsuce8I-640.webp 640w, assets/img/music/hQ0sMsuce8I-1120.webp 1120w" sizes="(max-width: 820px) 100vw, 56vw" alt="Shifin playing the violin at night above the city lights" width="1120" height="630" loading="lazy" decoding="async">
+          <span class="score__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+          <span class="score__lab">PLAY · 1:59</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="scene scene--selects" id="selects" data-scene="5" data-label="SCENE 05 · SELECTS" data-tl="S05 · SELECTS" aria-labelledby="selects-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 05</span><span class="slate__f slate__name">SELECTS</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <p class="tagline">SELECTS BIN · BEST OF SHIFIN</p>
+    <h2 id="selects-h" class="h2">Selects <em>His best photos and films, hand-picked</em></h2>
+    <div class="sel" id="selectsBin" role="group" aria-labelledby="selects-h"></div>
+  </div>
+</section>
+<section class="scene scene--books" id="books" data-scene="6" data-label="SCENE 06 · BOOKS" data-tl="S06 · BOOKS" aria-labelledby="books-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 06</span><span class="slate__f slate__name">BOOKS</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <h2 id="books-h" class="h2">My Books <em>Children's books by Shifin Shajahan on Amazon</em></h2>
+    <div class="books" tabindex="0" role="group" aria-labelledby="books-h"><a class="book" href="https://www.amazon.ca/dp/B0HP7KX93W" target="_blank" rel="noopener" data-book="0"><span class="book__cover"><img src="assets/img/books/B0HP7KX93W-600.webp" alt="Cover of STOP THAT JACKFRUIT!" width="600" height="776" loading="lazy" decoding="async"></span><span class="book__txt"><span class="book__t">STOP THAT JACKFRUIT!</span><span class="book__m">Kindle eBook · Ammu Adventures 1 · Ages 3–7</span><span class="book__d">Ammu the little elephant chases a runaway jackfruit down Mango Hill, across the rice fields and into the lotus pond. A funny read-aloud about friendship and teamwork, set in a jungle inspired by Kerala.</span><span class="book__buy">Buy on Amazon →</span></span></a><a class="book" href="https://www.amazon.ca/dp/B0HP86VMS4" target="_blank" rel="noopener" data-book="1"><span class="book__cover"><img src="assets/img/books/B0HP86VMS4-600.webp" alt="Cover of Ammu and the Great Monsoon Boat Rescue" width="600" height="776" loading="lazy" decoding="async"></span><span class="book__txt"><span class="book__t">Ammu and the Great Monsoon Boat Rescue</span><span class="book__m">Kindle eBook · Ammu Adventures 2 · Ages 3–7</span><span class="book__d">When the monsoon reaches her Kerala village, Ammu’s paper boat races away. With Tavi the frog she learns to look first, then hop. Includes a fold-your-own paper boat page.</span><span class="book__buy">Buy on Amazon →</span></span></a><a class="book" href="https://www.amazon.ca/dp/B0HP6YV1JQ" target="_blank" rel="noopener" data-book="2"><span class="book__cover"><img src="assets/img/books/B0HP6YV1JQ-600.webp" alt="Cover of How to Draw Cute Animals" width="600" height="776" loading="lazy" decoding="async"></span><span class="book__txt"><span class="book__t">How to Draw Cute Animals</span><span class="book__m">Paperback · 72 pages · Ages 4–8</span><span class="book__d">Sixty animals, each built from simple shapes in six to eight easy steps, with a practice box on every page.</span><span class="book__buy">Buy on Amazon →</span></span></a><a class="book" href="https://www.amazon.ca/dp/B0HP24QBC8" target="_blank" rel="noopener" data-book="3"><span class="book__cover"><img src="assets/img/books/B0HP24QBC8-600.webp" alt="Cover of Little Animal Adventures" width="600" height="776" loading="lazy" decoding="async"></span><span class="book__txt"><span class="book__t">Little Animal Adventures</span><span class="book__m">Paperback · 72 pages · Ages 4–6</span><span class="book__d">Sixty mazes, counting games, matching, dot-to-dot and colouring pages with friendly animals, plus a full answer key.</span><span class="book__buy">Buy on Amazon →</span></span></a></div>
+  </div>
+</section>
+<section class="scene scene--about" id="about" data-scene="7" data-label="SCENE 07 · THE STORY" data-tl="S07 · THE STORY" aria-labelledby="bio-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 07</span><span class="slate__f slate__name">THE STORY</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <div class="story">
+      <div class="story__img"><img src="assets/img/about/shifin-wide-905.webp" srcset="assets/img/about/shifin-wide-480.webp 480w, assets/img/about/shifin-wide-905.webp 905w" sizes="(max-width: 820px) 100vw, 40vw" alt="Shifin Shajahan in a green sweater, seated in a café armchair" width="905" height="930" loading="lazy" decoding="async"></div>
+      <div class="story__txt">
+        <p class="tagline">ABOUT</p>
+        <h2 id="bio-h" class="story__h">Hi, I'm <em>Shifin.</em></h2>
+        <p>I'm from Kerala, India, and these days I call Lindsay, Ontario home. I love telling stories with a camera, and I share them on my YouTube channel FuturEyes and on Instagram at @futureyes___.</p>
+        <p>I also write children's books, which you'll find on Amazon, I play the violin, and I'm available for photo and video shoots. I'm a Resource Drilling &amp; Blasting graduate from Fleming College, building my career in drilling. This page puts all of it in one place.</p>
+      </div>
+    </div>
+    <ul class="subs" aria-label="In short">
+      <li><b>From Kerala, India</b><span>Now living in Lindsay, Ontario, Canada.</span></li>
+      <li><b>Videographer &amp; storyteller</b><span>I film the people and moments around me.</span></li>
+      <li><b>Violinist</b><span>I play the violin, on camera too.</span></li>
+      <li><b>Author</b><span>I write children's books, published on Amazon.</span></li>
+      <li><b>Creator</b><span>FuturEyes on YouTube and @futureyes___ on Instagram.</span></li>
+    </ul>
+    <h3 class="h3">Contact sheet <em>What I'm like</em></h3>
+    <div class="sheet"><figure class="neg"><img src="assets/photos/p25c.webp" alt="Shifin by a lake with autumn trees behind him" width="600" height="800" loading="lazy" decoding="async"><figcaption><b>01A</b> Grounded <span>By the water, autumn colours</span></figcaption></figure><figure class="neg"><img src="assets/photos/p05.webp" alt="Shifin in sunglasses by the lake" loading="lazy" decoding="async"><figcaption><b>02A</b> By the lake <span>Sunglasses on</span></figcaption></figure><figure class="neg"><img src="assets/photos/p04.webp" alt="Shifin posing, black and white" loading="lazy" decoding="async"><figcaption><b>03A</b> Black &amp; white <span>Portrait</span></figcaption></figure><figure class="neg"><img src="assets/photos/p24.webp" alt="Shifin walking down a city street in a green jacket" loading="lazy" decoding="async"><figcaption><b>04A</b> Street style <span>Walking shots</span></figcaption></figure><figure class="neg"><img src="assets/photos/p19z.webp" alt="Close-up portrait of Shifin" width="491" height="655" loading="lazy" decoding="async"><figcaption><b>05A</b> Portrait <span>Close-up</span></figcaption></figure></div>
+    <div class="two" id="drilling">
+      <div class="two__txt"><p class="tagline">TWO WORLDS · CAMERA &amp; DRILL RIG</p><h3 class="h3">Drilling <em>Trained, certified, ready for the field</em></h3>
+        <p>Resource Drilling &amp; Blasting Diploma from Fleming College, Lindsay, Ontario. Hands-on lab and field training in underground and surface drilling.</p>
+        <ul class="rig">
+          <li><b>Methods</b><span>Diamond / core, geotechnical, environmental, air rotary, foundation, HDD, water-well, top-hammer</span></li>
+          <li><b>Rigs</b><span>Casagrande B37 &amp; F32, Geoprobe systems</span></li>
+          <li><b>Field skills</b><span>Core recovery &amp; sampling, rig setup, equipment inspection</span></li>
+          <li><b>Experience</b><span>Rotary Helper, Thejus Construction, India</span></li>
+          <li><b>Tickets</b><span>Working at Heights · WHMIS 2015 · Ontario Class G licence</span></li>
+        </ul>
+        <p class="rig__open"><i></i>Open to full-time drilling &amp; mining roles · rotations · remote sites · travel &amp; relocation</p>
+        <div class="rig__btns">
+          <a class="btn btn--red" href="assets/cv/Shifin_Shajahan_CV.pdf" target="_blank" rel="noopener" download><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg><span>Download CV</span></a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/shifin-shajahan-54799b279" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5.3 8.6H2.4V21h2.9zM3.9 3a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zM21.6 13.8c0-3.3-1.8-5.4-4.6-5.4-1.6 0-2.7.9-3.2 1.8V8.6H11V21h2.9v-6.4c0-1.6.6-3 2.3-3s2.4 1.4 2.4 3V21h3z"/></svg><span>LinkedIn</span></a>
+          <a class="btn btn--ghost" href="mailto:shajahanshifin88@gmail.com?subject=Drilling%20role%20for%20Shifin%20Shajahan"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span>Email me</span></a>
+          <a class="btn btn--ghost" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20saw%20your%20CV%20and%20I%27d%20like%20to%20talk%20about%20a%20drilling%20role." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></svg><span>WhatsApp</span></a>
+        </div></div>
+      <div class="sheet sheet--sm"><figure class="neg"><img src="assets/photos/p12.webp" alt="Shifin and his crew in hard hats looking down at the camera" loading="lazy" decoding="async"><figcaption><b>06A</b> The crew <span>Hard hats, team</span></figcaption></figure><figure class="neg"><img src="assets/photos/p18.webp" alt="Shifin in a hi-vis vest" loading="lazy" decoding="async"><figcaption><b>07A</b> Hi-vis on <span>Safety first</span></figcaption></figure><figure class="neg"><img src="assets/photos/p14.webp" alt="Shifin in hi-vis on his bike" loading="lazy" decoding="async"><figcaption><b>08A</b> Heading out <span>Hi-vis, on the bike</span></figcaption></figure><figure class="neg"><img src="assets/photos/p11.webp" alt="Shifin in a hi-vis vest, mirror selfie" loading="lazy" decoding="async"><figcaption><b>09A</b> Suited up <span>Ready to work</span></figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<section class="scene scene--svc" id="services" data-scene="8" data-label="SCENE 08 · SERVICES" data-tl="S08 · SERVICES" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 08</span><span class="slate__f slate__name">SERVICES</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <h2 id="svc-h" class="h2">Services <em>Photo &amp; video shoots, available for booking</em></h2>
+    <div class="svc">
+      <ol class="calls" aria-label="Call sheet"><li><a class="call" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%27d%20like%20you%20to%20film%20an%20event.%0AType%20of%20event%3A%20%0ADate%3A%20%0APlace%3A%20" target="_blank" rel="noopener"><span class="call__n">01</span><span class="call__t">Event &amp; wedding films</span><span class="call__d">Engagements, weddings, pre-wedding nights and family celebrations, filmed and cut into a story you will want to watch again.</span><span class="call__go">Enquire on WhatsApp →<span class="sr"> about event &amp; wedding films</span></span></a></li><li><a class="call" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%27m%20interested%20in%20a%20portrait%20%2F%20lifestyle%20shoot.%0APhoto%20or%20video%3A%20%0ADate%3A%20%0APlace%3A%20" target="_blank" rel="noopener"><span class="call__n">02</span><span class="call__t">Portrait &amp; lifestyle shoots</span><span class="call__d">Photos and short films of people in natural light and real places, for personal shoots, couples and creators.</span><span class="call__go">Enquire on WhatsApp →<span class="sr"> about portrait &amp; lifestyle shoots</span></span></a></li><li><a class="call" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%27d%20like%20a%20short-form%20video%20%28Reels%20%2F%20Shorts%29.%0AWhat%20it%27s%20for%3A%20%0ADate%3A%20" target="_blank" rel="noopener"><span class="call__n">03</span><span class="call__t">Short-form social videos</span><span class="call__d">Vertical Reels and Shorts, planned, shot and edited for Instagram and YouTube.</span><span class="call__go">Enquire on WhatsApp →<span class="sr"> about short-form social videos</span></span></a></li><li><a class="call" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20have%20footage%20I%27d%20like%20edited%20and%20colour%20graded.%0ALength%20%2F%20type%20of%20footage%3A%20%0ADeadline%3A%20" target="_blank" rel="noopener"><span class="call__n">04</span><span class="call__t">Editing &amp; colour grading</span><span class="call__d">Your footage edited and colour graded into a cinematic finish.</span><span class="call__go">Enquire on WhatsApp →<span class="sr"> about editing &amp; colour grading</span></span></a></li><li><a class="call" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%27d%20like%20a%20product%20%2F%20promo%20shoot.%0AProduct%20or%20business%3A%20%0ADate%3A%20" target="_blank" rel="noopener"><span class="call__n">05</span><span class="call__t">Product &amp; promo films</span><span class="call__d">Short cinematic films and stills that show off a product, a place or a small business.</span><span class="call__go">Enquire on WhatsApp →<span class="sr"> about product &amp; promo films</span></span></a></li></ol>
+      <div class="svc__side"><div class="stills stills--2"><figure class="still"><img src="assets/photos/p01c-600.webp" srcset="assets/photos/p01c-600.webp 600w, assets/photos/p01c-1024.webp 1024w" sizes="(max-width: 820px) 50vw, 22vw" alt="Shifin holding his camera up to his eye" width="1024" height="1536" loading="lazy" decoding="async"><figcaption>Behind the lens <span>Photo &amp; video</span></figcaption></figure><figure class="still"><img src="assets/photos/p02.webp" alt="Shifin standing on a bridge by the water" loading="lazy" decoding="async"><figcaption>On location <span>Outdoor shoots</span></figcaption></figure></div>
+        <a class="bookit" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20saw%20your%20website%20and%20I%27d%20like%20to%20book%20a%20photo/video%20shoot." target="_blank" rel="noopener"><span class="bookit__t">Book a shoot</span><span class="bookit__d">Based in Lindsay, Ontario. Send the date, the place and your idea on WhatsApp for availability and rates.</span><span class="bookit__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></svg> Open WhatsApp →</span></a></div>
+    </div>
+  </div>
+</section>
+<section class="scene scene--notes" id="notes" data-scene="9" data-label="SCENE 09 · THE GUESTBOOK" data-tl="S09 · GUESTBOOK" aria-labelledby="gb-h">
+  <div class="wrap">
+    <div class="slate" aria-hidden="true"><div class="slate__clap"><i></i></div><div class="slate__body"><span class="slate__f"><b>SCENE</b> 09</span><span class="slate__f slate__name">GUESTBOOK</span><span class="slate__f"><b>TAKE</b> <em>1</em></span></div></div>
+    <h2 id="gb-h" class="h2">The Guestbook <em>Leave a note on the reel</em></h2>
+    <div class="gb" id="gb">
+      <form class="gb__form" id="gbForm" novalidate autocomplete="off">
+        <p class="gb__kick"><span class="gb__rec" aria-hidden="true"></span>Your take</p>
+        <div class="gb__row">
+          <label class="gb__f"><span class="gb__l">Name</span><input id="gbName" name="name" type="text" maxlength="40" required autocomplete="name" enterkeyhint="next" placeholder="Your name"></label>
+          <label class="gb__f gb__f--role"><span class="gb__l">You are a</span><span class="gb__sel"><select id="gbRole" name="role"><option selected>Viewer</option><option>Friend</option><option>Client</option><option>Family</option><option>Collaborator</option><option>Fellow creator</option></select></span></label>
+        </div>
+        <label class="gb__f"><span class="gb__l">Message <span class="gb__cnt" id="gbCnt" aria-live="polite">0 / 280</span></span><textarea id="gbMsg" name="message" rows="3" maxlength="280" required placeholder="A few words for Shifin…"></textarea></label>
+        <div class="gb__hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" id="gbHp" tabindex="-1" autocomplete="off"></label></div>
+        <div class="gb__foot">
+          <p class="gb__status" id="gbStatus" role="status" aria-live="polite">Kind words only. Links can’t be added.</p>
+          <button class="gb__send" id="gbSend" type="submit"><span>Send</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </form>
+      <div class="gb__wall">
+        <p class="gb__count" id="gbCount" aria-live="polite">Notes from viewers</p>
+        <ol class="gb__list" id="gbList" aria-label="Notes from visitors"></ol>
+        <p class="gb__empty" id="gbEmpty">The reel is waiting for its first note. <em>Your name could open the credits.</em></p>
+        <button class="gb__more" id="gbMore" type="button" hidden>Show more notes</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="scene scene--credits" id="credits" data-scene="10" data-label="END CREDITS" data-tl="END CREDITS ROLL" aria-labelledby="contact-h">
+  <div class="roll">
+    <p class="roll__pre">A</p>
+    <p class="roll__brand">FUTUREYES</p>
+    <p class="roll__pre">production</p>
+    <dl class="roll__list">
+      <div class="roll__big"><dt>Directed, shot &amp; edited by</dt><dd>Shifin Shajahan</dd></div>
+      <div><dt>Books written by</dt><dd>Shifin Shajahan</dd></div>
+      <div><dt>Starring</dt><dd>The people and moments around him</dd></div>
+      <div><dt>Films</dt><dd>FADE · Canadian Couple’s Engagement · Futureyes Presents · Groom’s Night Rave</dd></div>
+      <div><dt>Vertical cuts</dt><dd>@futureyes___ on Instagram</dd></div>
+      <div><dt>Vlogs</dt><dd>The Journey on YouTube</dd></div>
+      <div><dt>Score</dt><dd>Violin by Shifin Shajahan</dd></div>
+      <div><dt>Channel</dt><dd>FuturEyes on YouTube</dd></div>
+      <div><dt>From</dt><dd>Kerala, India</dd></div>
+      <div><dt>Now in</dt><dd>Lindsay, Ontario, Canada</dd></div>
+      <div><dt>Trained in</dt><dd>Resource Drilling &amp; Blasting</dd></div>
+    </dl>
+    <p class="roll__end">The End<span>…of this cut.</span></p>
+    <div class="contact">
+      <h2 id="contact-h" class="contact__h">Let's make <em>something.</em></h2>
+      <p>For shoots, drilling roles, collaborations or just to say hi, message me on WhatsApp, email me, or find me on Instagram, YouTube or LinkedIn.</p>
+      <div class="contact__btns">
+        <a class="btn btn--red btn--lg" href="https://wa.me/17059341193?text=Hi%20Shifin%21%20I%20saw%20your%20website%20and%20wanted%20to%20get%20in%20touch." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></svg><span>Message on WhatsApp</span></a>
+        <a class="mail" href="mailto:shajahanshifin88@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span>shajahanshifin88@gmail.com</span></a>
+        <div class="socials">
+          <a class="soc" href="https://www.instagram.com/futureyes___/" target="_blank" rel="noopener" aria-label="Instagram @futureyes___"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><span>@futureyes___</span></a>
+          <a class="soc" href="https://www.youtube.com/@FuturEyes9955" target="_blank" rel="noopener" aria-label="YouTube FuturEyes"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg><span>FuturEyes</span></a>
+          <a class="soc" href="https://www.linkedin.com/in/shifin-shajahan-54799b279" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5.3 8.6H2.4V21h2.9zM3.9 3a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zM21.6 13.8c0-3.3-1.8-5.4-4.6-5.4-1.6 0-2.7.9-3.2 1.8V8.6H11V21h2.9v-6.4c0-1.6.6-3 2.3-3s2.4 1.4 2.4 3V21h3z"/></svg><span>LinkedIn</span></a>
+        </div>
+      </div>
+    </div>
+    <footer class="foot"><span class="brand">FUTUR<b>EYES</b></span><p>© 2026 Shifin Shajahan · Lindsay, Ontario</p></footer>
+  </div>
+</section>
+</main>
+
+<nav class="tl" id="timeline" aria-label="Timeline: jump to a section">
+  <div class="tl__head">
+    <span class="tl__tc" id="tc">00:00:00:00</span>
+    <span class="tl__seq">SEQ · THE EDIT</span>
+    <span class="tl__now" id="tlNow">OPENING TITLES</span>
+    <span class="tl__fps">24 FPS</span>
+  </div>
+  <div class="tl__body">
+    <div class="tl__labels" aria-hidden="true"><span data-l="T1">T1</span><span data-l="V2">V2</span><span data-l="V1">V1</span><span data-l="A1">A1</span></div>
+    <div class="tl__view" id="tlView">
+      <div class="tl__track" id="tlTrack">
+        <div class="tl__ruler" id="tlRuler" aria-hidden="true"></div>
+        <div class="tl__lane" data-lane="T1"></div>
+        <div class="tl__lane" data-lane="V2"></div>
+        <div class="tl__lane" data-lane="V1"></div>
+        <div class="tl__lane tl__lane--a" data-lane="A1"><span class="tl__audio" aria-hidden="true"><b>A1 · SCORE · VIOLIN</b></span></div>
+      </div>
+      <div class="tl__ph" id="playhead" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+</nav>
+</body>
+</html>
