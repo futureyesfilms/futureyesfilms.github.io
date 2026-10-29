@@ -708,7 +708,6 @@ html.no-intro .ln__in::after{animation-delay:3s}
 .leak{mix-blend-mode:normal;will-change:auto}
 .open__glow{filter:none}
 html.hero-off .leak,html.hero-off .open__glow,html.hero-off .open__poster img,html.hero-off .open__hint i,html.hero-off .flare{animation-play-state:paused}
-html.hero-off .scene--open .open__art{visibility:hidden}
 .rv{filter:none;will-change:auto;transform:translate3d(0,18px,0);transition:opacity .8s var(--ease-cine),transform .9s var(--ease-cine);transition-delay:var(--rd,0s)}
 .rv.is-in{filter:none}
 .cut-in{animation:none}
@@ -729,9 +728,7 @@ html.has-cursor a,html.has-cursor button{cursor:pointer}
 
 /* --- the opening frame fits between the top bar and the timeline on every laptop --- */
 @media (min-width:821px){
-  .scene--open{min-height:100vh;min-height:100svh;padding-top:var(--hud);box-sizing:border-box}
   /* v12: hero photo restored to the original v10 framing (SHIFIN 6:24 PM) */
-  .open__glow{top:calc(var(--hud) + 4%);height:calc(92% - var(--hud) - var(--tlh))}
   .open__name{font-size:clamp(72px,min(14.5vw,20vh),236px)}
   .open__role{margin:clamp(10px,2vh,22px) 0 6px;font-size:clamp(20px,min(2.5vw,4vh),34px)}
   .open__kicker{margin-bottom:clamp(8px,1.4vh,14px)}
@@ -800,10 +797,10 @@ html{scroll-padding-top:var(--hud);scroll-padding-bottom:var(--tlh)}
 /* --- cinematic dim on every video/photo thumbnail: overlay opacity only (GPU-cheap) --- */
 .jc__img::after,.neg::before,.still::after,.sel__it::before,.score__poster::before,.book__cover::before{
   content:"";position:absolute;left:0;top:0;right:0;bottom:0;z-index:1;pointer-events:none;
-  background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.22) 55%,rgba(0,0,0,.12));opacity:1;transition:opacity .28s ease}
+  background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,.5) 55%,rgba(0,0,0,.4));opacity:1;transition:opacity .28s ease}
 .neg{position:relative}
 .neg::before{bottom:auto;aspect-ratio:3/4}
-.reel::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:rgba(0,0,0,.3);opacity:1;transition:opacity .28s ease}
+.reel::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:rgba(0,0,0,.5);opacity:1;transition:opacity .28s ease}
 .reel.is-on::before{opacity:0}
 .score__btn,.score__lab,.sel__t,.reel__badge,.reel__ig,.reel__play,.reel__info{z-index:2}
 .score__poster.on::before{display:none}
@@ -813,8 +810,8 @@ html{scroll-padding-top:var(--hud);scroll-padding-bottom:var(--tlh)}
   .bin__clip:hover img{opacity:1}
 }
 @media (hover:none),(pointer:coarse){
-  .jc__img::after,.neg::before,.still::after,.sel__it::before,.score__poster::before,.book__cover::before{opacity:.55}
-  .reel::before{background:rgba(0,0,0,.15)}
+  .jc__img::after,.neg::before,.still::after,.sel__it::before,.score__poster::before,.book__cover::before{opacity:.8}
+  .reel::before{background:rgba(0,0,0,.35)}
 }
 .jc__img.on::after{display:none}
 @media (max-width:820px){.open__copy{padding-bottom:calc(var(--tlh) + 44px)}}
