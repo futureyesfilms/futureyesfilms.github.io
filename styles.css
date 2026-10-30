@@ -845,3 +845,10 @@ html.intro-on .scene--open,html.intro-on .scene--open *,html.intro-on .scene--op
 /* v18b: SHIFIN — no timeline line in the intro */
 .intro__line{display:none!important}
 .intro__go{display:none!important}
+
+/* v18d: SHIFIN — intro deep black + premium (pure black, no grain lift, softer glow) */
+.intro__bg{background:#000!important}
+.intro__grain{display:none!important}
+.intro__beam{background:radial-gradient(ellipse 55% 50% at 50% 47%,rgba(255,236,214,.035),rgba(255,43,58,.012) 45%,transparent 75%)!important}
+.intro__vig{background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,.85))!important}
+.intro__bar--t,.intro__bar--b{box-shadow:none!important}
