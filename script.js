@@ -16,7 +16,6 @@
      id = the code in instagram.com/reel/<id>/ ; k = small label ; t = title ; m = views/month line ; must = featured "MUST WATCH" card.
      Images needed per reel: assets/img/ig/<id>-270.webp, assets/img/ig/<id>-480.webp (9:16 cover) and assets/img/tl/<id>.webp (timeline thumb). */
   var VLOGS=[ {"id": "DaPD8NMu_0B", "k": "Music reel", "t": "Humsafar", "m": "Jul 2026", "must": true},
-    {"id": "DHWV_SHREZ_", "k": "Portrait film", "t": "Portrait", "m": "Mar 2025"},
     {"id": "C_eZfzbvOUJ", "k": "Saree portrait", "t": "Draped in Fuchsia", "m": "Sep 2024"},
     {"id": "C-B4Ch_ucDH", "k": "Behind the scenes", "t": "Engagement Shoot, BTS", "m": "Jul 2024"},
     {"id": "Den5ikvOW4o", "k": "Mood reel", "t": "When Afghan Jalebi Hits", "m": "2.8K views · Oct 2026"},
